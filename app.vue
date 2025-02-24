@@ -2,7 +2,9 @@
   <div>
     <!-- <NuxtRouteAnnouncer /> -->
     <!-- <NuxtWelcome /> -->
-    hello world
-    <NuxtPage></NuxtPage>
+    <NuxtLayout>
+      <NuxtPage></NuxtPage>
+    </NuxtLayout>
+
   </div>
 </template>
