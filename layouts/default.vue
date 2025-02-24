@@ -1,9 +1,9 @@
 <template>
   <div>
     <nav>
-      <img class="avatar" src="~/assets/afei.jpg" alt="avatar" >
+      <img class="avatar  inline-block" src="~/assets/afei.jpg" alt="avatar" >
       导航栏
-      <img class="avatar" src="/favicon.ico" alt="avatar" >
+      <img class="w-[50px] border-[1px] border-slate-300 rounded-full inline-block" src="/favicon.ico" alt="avatar" >
     </nav>
     <slot />
   </div>
