@@ -8,6 +8,7 @@ import html from "remark-html";
 const postsDir = path.join(process.cwd(), "content");
 
 export default defineEventHandler(async (event) => {
+  try {
   const fileName = 'test'+getRouterParam(event, 'id') + ".md";
 
   // 获取文章内容
@@ -25,4 +26,11 @@ export default defineEventHandler(async (event) => {
     title: matterInfo.data.title as string,
     content,
   };
+  } catch (err) {
+    // 没有此文件或没有访问权限
+    throw createError({
+      statusCode: 404,
+      message: "文章不存在",
+    });
+  }
 });
