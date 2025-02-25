@@ -1,4 +1,5 @@
 ---
-title: test1 title
+title: 博客1
 ---
-# test1 content
+# 技术成神 nuxt网站
+nuxt简化垃圾代码,提炼优雅的代码

@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>{{  data?.title }}</Title>
+    <Meta name="description" :content="data?.title" />
+  </Head>
   <div class="p-5">
     <div v-if="pending">加载中...</div>
      <!-- 添加error显示 -->
@@ -20,9 +24,9 @@
 </template>
 
 <script setup lang="ts">
-useHead({
-  title: '文章详情'
-})
+// useHead({
+//   title: '文章详情'
+// })
 const route = useRoute();
 const fetchPost  =  () =>  $fetch(`/api/detail/${route.params.id}`);
 const { data, pending, error  } = await useAsyncData(fetchPost);
