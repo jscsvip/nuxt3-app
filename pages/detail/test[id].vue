@@ -42,6 +42,9 @@ const onSubmit = () => {
   if (isLogin.value) {
     // 提示用户
     toast.add({ title: '已提交评论!' })
+    console.log( getCurrentInstance()?.proxy)
+    // 测试无法获取
+    // getCurrentInstance()?.proxy?.$toast('已提交评论!')
     // 提交留言...
     value.value = ''
   } else {
