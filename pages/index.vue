@@ -23,6 +23,7 @@
 
     <NuxtLink to="/blogs">博客首页</NuxtLink> <br/>
     <NuxtLink to="/blogs/1">博客详情:blogs-1</NuxtLink> <br/>
+    <Counter />
     
   </div>
   {{ message }}
