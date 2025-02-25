@@ -15,6 +15,9 @@
             }}</NuxtLink>
             <p class="text-slate-500">发布于: {{ post.date }}</p>
             </div>
+            <div>当前页数:{{ page }}</div>
+            <UButton @click="prev">上一页</UButton>
+            <UButton @click="next">下一页</UButton>
         </div>
       <UButton>Button</UButton>
 
@@ -26,9 +29,23 @@
 </template>
 <script setup lang="ts">
     const { message } = await $fetch('/api/hello')
-    const { data: posts, pending, error } = await useFetch('/api/posts', {
-  lazy: true
-})
+    const page = ref(1);
+    const {
+      data: posts,
+      pending,
+      error,
+      refresh, // 获取刷新函数
+    } = await useFetch(() => `/api/posts?page=${page.value}&size=2`); // 注意修改为工厂函数方式
+
+    function prev() {
+      page.value--;
+      refresh();//刷新接口
+    }
+
+    function next() {
+      page.value++;
+      refresh();//刷新接口
+    }
     // 使用post传递参数
     $fetch('/api/create-post', { method: 'post', body: { id: 'new id' } })
     // 使用get传递参数
