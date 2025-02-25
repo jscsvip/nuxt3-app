@@ -21,4 +21,9 @@
 <script setup lang="ts">
     const { message } = await $fetch('/api/hello')
     const posts = await $fetch("/api/posts");
+    // 使用post传递参数
+    $fetch('/api/create-post', { method: 'post', body: { id: 'new id' } })
+    // 使用get传递参数
+    $fetch('/api/query?param1=a&param2=b')
+
 </script>
