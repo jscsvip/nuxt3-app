@@ -1,17 +1,23 @@
 <template>
     <div class="flex items-center flex-col gap-2">
     <h1>技术成神-首页</h1>
-    <div v-for="post in posts" :key="post.id">
-      <NuxtLink class="text-lg" :to="`/detail/${post.id}`">{{
-        post.title
-      }}</NuxtLink>
-      <p class="text-slate-500">发布于: {{ post.date }}</p>
-    </div>
-    <div>
+        <!-- 处理加载状态 -->
+        <div v-if="pending">加载中...</div>
+
+        <!-- 处理请求错误 -->
+        <div v-else-if="error" class="text-red-300">{{ error.message }}</div>
+
+        <!-- 正常显示内容 -->
+        <div v-else>
+            <div v-for="post in posts" :key="post.id">
+            <NuxtLink class="text-lg" :to="`/detail/${post.id}`">{{
+                post.title
+            }}</NuxtLink>
+            <p class="text-slate-500">发布于: {{ post.date }}</p>
+            </div>
+        </div>
       <UButton>Button</UButton>
-    </div>
-    <NuxtLink to="/detail">Detail Page</NuxtLink> <br/>
-    <NuxtLink to="/detail-1">路由参数:detail 1</NuxtLink> <br/>
+
     <NuxtLink to="/blogs">博客首页</NuxtLink> <br/>
     <NuxtLink to="/blogs/1">博客详情:blogs-1</NuxtLink> <br/>
     
@@ -20,7 +26,9 @@
 </template>
 <script setup lang="ts">
     const { message } = await $fetch('/api/hello')
-    const posts = await $fetch("/api/posts");
+    const { data: posts, pending, error } = await useFetch('/api/posts', {
+  lazy: true
+})
     // 使用post传递参数
     $fetch('/api/create-post', { method: 'post', body: { id: 'new id' } })
     // 使用get传递参数
