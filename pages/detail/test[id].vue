@@ -27,6 +27,9 @@
 // useHead({
 //   title: '文章详情'
 // })
+definePageMeta({
+  middleware: ['auth']
+})
 const route = useRoute();
 const fetchPost  =  () =>  $fetch(`/api/detail/${route.params.id}`);
 const { data, pending, error  } = await useAsyncData(fetchPost);
@@ -35,11 +38,11 @@ const router = useRouter();
 // 增加评论相关逻辑，注意登录状态的获取和使用
 const value = useState("comment", () => "");
 // 获取状态，转换为 Ref，其他代码无需改变
-const store = useUser1();
-const { isLogin } = storeToRefs(store)
+// const store = useUser1();
+// const { isLogin } = storeToRefs(store)
 const toast = useToast()
 const onSubmit = () => {
-  if (isLogin.value) {
+  // if (isLogin.value) {
     // 提示用户
     toast.add({ title: '已提交评论!' })
     console.log( getCurrentInstance()?.proxy)
@@ -47,9 +50,9 @@ const onSubmit = () => {
     // getCurrentInstance()?.proxy?.$toast('已提交评论!')
     // 提交留言...
     value.value = ''
-  } else {
+  // } else {
     // 要求登录
-    router.push('/login?callback=' + route.path)
-  }
+    // router.push('/login?callback=' + route.path)
+  // }
 }
 </script>
