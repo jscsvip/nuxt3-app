@@ -23,8 +23,12 @@
 
     <NuxtLink to="/blogs">博客首页</NuxtLink> <br/>
     <NuxtLink to="/blogs/1">博客详情:blogs-1</NuxtLink> <br/>
+    <!-- ref与useState的区别 -->
     <Counter />
-    
+    <!-- 使用全局状态,可以看到全局的变量在不同的组件中可以共享,而ref是不共享的 -->
+    <Counter2 />
+    <Counter2 />
+    <Counter2 />
   </div>
   {{ message }}
 </template>
