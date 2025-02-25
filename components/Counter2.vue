@@ -22,7 +22,8 @@
 
 <script setup lang="ts">
 // 全局状态
-const count = useCounter();
+const store = useCounter1();
+const { value: count } = storeToRefs(store);
 // 局部状态
 const count2 = ref(1);
 </script>

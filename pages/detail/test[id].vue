@@ -25,7 +25,9 @@ const { data, pending } = await useAsyncData(fetchPost);
 const router = useRouter();
 // 增加评论相关逻辑，注意登录状态的获取和使用
 const value = useState("comment", () => "");
-const isLogin = useLogin()
+// 获取状态，转换为 Ref，其他代码无需改变
+const store = useUser1();
+const { isLogin } = storeToRefs(store)
 const toast = useToast()
 const onSubmit = () => {
   if (isLogin.value) {
