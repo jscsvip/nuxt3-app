@@ -20,6 +20,9 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  title: '文章详情'
+})
 const route = useRoute();
 const fetchPost  =  () =>  $fetch(`/api/detail/${route.params.id}`);
 const { data, pending, error  } = await useAsyncData(fetchPost);

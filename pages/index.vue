@@ -33,6 +33,9 @@
   {{ message }}
 </template>
 <script setup lang="ts">
+    useHead({
+      title: '文章列表'
+    })
     const { message } = await $fetch('/api/hello')
     const page = ref(1);
     const {
